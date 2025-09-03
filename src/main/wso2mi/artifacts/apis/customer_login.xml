@@ -1,7 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<api context="/customer_login" name="customer_login" xmlns="http://ws.apache.org/ns/synapse">
-    <resource methods="GET" uri-template="/">
+<api context="/customer_login" name="customerLoginApi" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="POST" uri-template="/">
         <inSequence>
+            <!-- Transform JSON input to SOAP XML -->
+            <!-- <payloadFactory media-type="json" template-type="default">
+                <format>${user_name}<br></br></format>
+            </payloadFactory> -->
+            <payloadFactory media-type="xml">
+                <format>
+                    <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:log="http://example.com/login">
+                        <soapenv:Header/>
+                        <soapenv:Body>
+                            <login>
+                                <email>$1</email>
+                                <password>$2</password>
+                            </login>
+                        </soapenv:Body>
+                    </soapenv:Envelope>
+                </format>
+                <args>
+                    <arg evaluator="json" expression="$.username"/>
+                    <arg evaluator="json" expression="$.password"/>
+                </args>
+            </payloadFactory>
+            <!-- Call legacy endpoint -->
+            <call>
+                <endpoint>
+                    <address uri="http://192.168.1.11:3000/auth/login"/>
+                </endpoint>
+            </call>
+            <!-- Legacy XML → JSON -->
+            <payloadFactory media-type="json">
+                <format>
+                    {
+                    "status": "$1",
+                    "message": "$2",
+                    "user": {
+                    "id": "$3",
+                    "email": "$4"
+                    }
+                    }
+                </format>
+                <args>
+                    <arg expression="//status/text()"/>
+                    <arg expression="//message/text()"/>
+                    <arg expression="//user/id/text()"/>
+                    <arg expression="//user/email/text()"/>
+                </args>
+            </payloadFactory>
+            <respond/>
         </inSequence>
         <faultSequence>
         </faultSequence>
