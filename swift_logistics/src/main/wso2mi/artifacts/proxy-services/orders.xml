@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<proxy name="orders" startOnLoad="true" transports="http https" xmlns="http://ws.apache.org/ns/synapse">
+    <target>
+        <inSequence>
+            <payloadFactory media-type="json" template-type="default">
+                <format>{"hello wold"}</format>
+            </payloadFactory>
+            <respond description="helow"/>
+        </inSequence>
+        <faultSequence/>
+    </target>
+</proxy>
