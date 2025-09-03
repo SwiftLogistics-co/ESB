@@ -35,17 +35,13 @@
                     {
                     "status": "$1",
                     "message": "$2",
-                    "user": {
-                    "id": "$3",
-                    "email": "$4"
-                    }
+                    "sessionToken": "$3"
                     }
                 </format>
                 <args>
                     <arg expression="//status/text()"/>
                     <arg expression="//message/text()"/>
-                    <arg expression="//user/id/text()"/>
-                    <arg expression="//user/email/text()"/>
+                    <arg expression="//sessionToken/text()"/>
                 </args>
             </payloadFactory>
             <respond/>
