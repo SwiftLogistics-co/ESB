@@ -2,10 +2,8 @@
 <api context="/customer_login" name="customerLoginApi" xmlns="http://ws.apache.org/ns/synapse">
     <resource methods="POST" uri-template="/">
         <inSequence>
+            <!-- CORS Preflight -->
             <!-- Transform JSON input to SOAP XML -->
-            <!-- <payloadFactory media-type="json" template-type="default">
-                <format>${user_name}<br></br></format>
-            </payloadFactory> -->
             <payloadFactory media-type="xml">
                 <format>
                     <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:log="http://example.com/login">
@@ -26,7 +24,7 @@
             <!-- Call legacy endpoint -->
             <call>
                 <endpoint>
-                    <address uri="http://192.168.1.11:3000/auth/login"/>
+                    <address uri="http://localhost:3000/auth/login"/>
                 </endpoint>
             </call>
             <!-- Legacy XML → JSON -->
@@ -35,15 +33,23 @@
                     {
                     "status": "$1",
                     "message": "$2",
-                    "sessionToken": "$3"
+                    "accessToken": "$3",
+                    "user":{
+                        "id": "$4",
+                        "username": "$5",
+                        "name": "kasun"
+                    }
                     }
                 </format>
                 <args>
                     <arg expression="//status/text()"/>
                     <arg expression="//message/text()"/>
-                    <arg expression="//sessionToken/text()"/>
+                    <arg expression="//user/sessionToken/text()"/>
+                    <arg expression="//user/id/text()"/>
+                    <arg expression="//user/email/text()"/>
                 </args>
             </payloadFactory>
+            <!-- CORS Headers -->
             <respond/>
         </inSequence>
         <faultSequence>
