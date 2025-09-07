@@ -24,9 +24,33 @@
     </resource>
     <resource methods="GET" uri-template="/orders">
         <inSequence>
-            <respond/>
+            <!-- Call backend -->
+            <http.get configKey="cms-api">
+                <relativePath>/orders</relativePath>
+                <overwriteBody>true</overwriteBody>
+            </http.get>
+            <!-- Handle fail (missing token) -->
+            <filter xpath="//response/status = 'fail'">
+                <then>
+                    <payloadFactory media-type="json">
+                        <format>{ "status": "fail", "message": "$1" }</format>
+                        <args>
+                            <arg evaluator="xml" expression="//response/message/text()"/>
+                        </args>
+                    </payloadFactory>
+                    <respond/>
+                </then>
+                <else>
+                    <jsontransform>
+                        <property name="synapse.commons.json.output.jsonoutAutoArray" value="true"/>
+                        <property name="synapse.commons.json.preserve.namespace" value="false"/>
+                    </jsontransform>
+                    <!-- Convert XML to JSON automatically -->
+                    <property name="messageType" value="application/json" scope="axis2"/>
+                    <property name="ContentType" value="application/json" scope="axis2"/>
+                    <respond/>
+                </else>
+            </filter>
         </inSequence>
-        <faultSequence>
-        </faultSequence>
     </resource>
 </api>

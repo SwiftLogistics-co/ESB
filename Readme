@@ -85,4 +85,36 @@ cms response
   </orders>
 </response>  
 ```
+client response
+
+``` json 
+{
+  "response": {
+    "status": "success",
+    "orders": {
+      "order": [
+        {
+          "id": 3,
+          "product": "Example Product",
+          "quantity": 2,
+          "status": "pending",
+          "address": "123 Street, City",
+          "route_id": 5,
+          "created_at": "2025-09-03T21:17:51.543955"
+        },
+        {
+          "id": 2,
+          "product": "Shoes",
+          "quantity": 2,
+          "status": "pending",
+          "address": "123 Main St",
+          "route_id": null,
+          "created_at": "2025-09-03T18:20:35.479132"
+        }
+      ]
+    }
+  }
+}
+
+```
 
