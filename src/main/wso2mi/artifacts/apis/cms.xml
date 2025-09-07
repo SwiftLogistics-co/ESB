@@ -54,4 +54,54 @@
             </filter>
         </inSequence>
     </resource>
+
+    <resource methods="POST" uri-template="/new-order">
+        <inSequence>
+            <datamapper config="resources:datamapper/new-orderMapper/new-orderMapper.dmc" inputSchema="resources:datamapper/new-orderMapper/new-orderMapper_inputSchema.json" outputSchema="resources:datamapper/new-orderMapper/new-orderMapper_outputSchema.json"/><!-- Step 1: Convert incoming JSON to XML for backend -->
+            <!-- Step 2: Send to backend -->
+            <http.post configKey="cms-api">
+                <relativePath>/orders</relativePath>
+                <headers>[]</headers>
+                <requestBodyType>XML</requestBodyType>
+                <requestBodyXml>${xpath('$body/node()')}</requestBodyXml>
+                <forceScAccepted>false</forceScAccepted>
+                <disableChunking>false</disableChunking>
+                <forceHttp10>false</forceHttp10>
+                <noKeepAlive>false</noKeepAlive>
+                <forcePostPutNobody>false</forcePostPutNobody>
+                <responseVariable>http_post_1</responseVariable>
+                <overwriteBody>true</overwriteBody>
+            </http.post>
+            <!-- Step 3: Convert backend XML response to JSON for frontend -->
+            <jsontransform>
+                <property name="synapse.commons.json.output.jsonoutAutoArray" value="true"/>
+                <property name="synapse.commons.json.preserve.namespace" value="false"/>
+                <property name="synapse.commons.json.output.autoPrimitive" value="true"/>
+            </jsontransform>
+            
+            <property name="messageType" value="application/json" scope="axis2"/>
+            <property name="ContentType" value="application/json" scope="axis2"/>
+            
+            <respond/>
+        </inSequence>
+        
+        <faultSequence>
+            <log level="custom">
+                <property name="error" value="Error occurred"/>
+                <property name="errorDetail" expression="get-property('ERROR_MESSAGE')"/>
+            </log>
+            
+            <payloadFactory media-type="json">
+                <format>
+                    {
+                    "error": "Internal server error",
+                    "message": "Failed to process order"
+                    }
+                </format>
+            </payloadFactory>
+            
+            <property name="HTTP_SC" value="500" scope="axis2"/>
+            <respond/>
+        </faultSequence>
+    </resource>
 </api>

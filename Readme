@@ -1,5 +1,5 @@
-## login 
-### client side
+
+## cms/login (POST)
 reqest from client
 ``` json
   {
@@ -20,7 +20,6 @@ responce
   }
 }
 ```
-### cms side
 reqest to cms
 ``` xml 
 <login>
@@ -42,7 +41,7 @@ response from cms
 </response>
 ```
 
-### order service
+## cms/orders (GET)
 
 cms request
 ``` bash
@@ -117,4 +116,61 @@ client response
 }
 
 ```
-
+## new-order (POST)
+client request
+``` json
+{
+  "order": {
+    "product": "monitor",
+    "quantity": 4,
+    "address": "123 Main St"
+  }
+}
+// with bearer token in header
+```
+client response
+``` json
+{
+  "response": {
+    "status": "success",
+    "message": "Order placed successfully",
+    "order": {
+      "id": 7,
+      "client_id": 2,
+      "product": "monitor",
+      "quantity": 4,
+      "status": "pending",
+      "address": "123 Main St",
+      "route_id": null,
+      "created_at": "2025-09-07T14:52:02.880648"
+    }
+  }
+}
+```
+CMS requset
+``` xml
+<order>
+  <product>samsung tv</product>
+  <quantity>1</quantity>
+  <address>123 Main St</address>
+</order>
+<!-- with bearer token  -->
+```
+CMS response
+``` xml
+<?xml version="1.0"?>
+<response>
+    <status>success</status>
+    <message>Order placed successfully</message>
+    <order>
+        <id>5</id>
+        <client_id>2</client_id>
+        <product>samsung tv</product>
+        <quantity>1</quantity>
+        <status>pending</status>
+        <address>123 Main St</address>
+        <route_id/>
+        <created_at>2025-09-07T14:25:34.302214</created_at>
+    </order>
+</response>
+```

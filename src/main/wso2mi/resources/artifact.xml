@@ -77,6 +77,30 @@
       <file>xtoj.xml</file>
       <path>/_system/governance/mi-resources/xml</path>
       <mediaType>application/xml</mediaType>
+      <properties></properties>
+    </item>
+  </artifact>
+  <artifact name="resources_datamapper_new-orderMapper_new-orderMapper_dmc" groupId="com.microintegrator.projects" version="1.0.0" type="registry/resource" serverRole="EnterpriseIntegrator">
+    <item>
+      <file>new-orderMapper.dmc</file>
+      <path>/_system/governance/mi-resources/datamapper/new-orderMapper</path>
+      <mediaType>text/plain</mediaType>
+      <properties></properties>
+    </item>
+  </artifact>
+  <artifact name="resources_datamapper_new-orderMapper_new-orderMapper_inputSchema_json" groupId="com.microintegrator.projects" version="1.0.0" type="registry/resource" serverRole="EnterpriseIntegrator">
+    <item>
+      <file>new-orderMapper_inputSchema.json</file>
+      <path>/_system/governance/mi-resources/datamapper/new-orderMapper</path>
+      <mediaType>text/plain</mediaType>
+      <properties></properties>
+    </item>
+  </artifact>
+  <artifact name="resources_datamapper_new-orderMapper_new-orderMapper_outputSchema_json" groupId="com.microintegrator.projects" version="1.0.0" type="registry/resource" serverRole="EnterpriseIntegrator">
+    <item>
+      <file>new-orderMapper_outputSchema.json</file>
+      <path>/_system/governance/mi-resources/datamapper/new-orderMapper</path>
+      <mediaType>text/plain</mediaType>
       <properties/>
     </item>
   </artifact>
