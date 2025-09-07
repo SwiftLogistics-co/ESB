@@ -10,8 +10,8 @@ interface Response {
     user: {
         id: number;
         email: string;
-        sessionToken: string;
     };
+    sessionToken: string;
 }
 
 /*
@@ -37,15 +37,15 @@ export function mapFunction(input: Response): Root {
     return {
         status: input.status,
         message: input.message,
+        accessToken: input.sessionToken,
         user: {
-            name: "kasun",
             username: input.user.email,
-            id: mapNumberToString(input.user.id)
-        },
-        accessToken: input.user.sessionToken
+            id: mapNumberToString(input.user.id),
+            name: "kasun"
+        }
     };
 }
 
 function mapNumberToString(id: number): string {
-    return dmUtils.numberToString(id);
+    return id.toString();
 }

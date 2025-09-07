@@ -1,0 +1,43 @@
+## login 
+### client side
+reqest from client
+``` json
+  {
+    "username": "driver1@swift.com",
+    "password": "hashpass1"
+  }
+```
+responce 
+``` json
+{
+  "status": "success",
+  "message": "Login successful",
+  "accessToken": "",
+  "user": {
+    "id": "1",
+    "username": "driver1@swift.com",
+    "name": "kasun"
+  }
+}
+```
+### cms side
+reqest to cms
+``` xml 
+<login>
+    <email>driver1@swift.com</email>
+    <password>hashpass1</password>
+</login>
+```
+response from cms
+``` xml
+<?xml version="1.0"?>
+<response>
+    <status>success</status>
+    <message>Login successful</message>
+    <user>
+        <id>1</id>
+        <email>driver1@swift.com</email>
+    </user>
+    <sessionToken>eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkcml2ZXIxQHN3aWZ0LmNvbSIsImlhdCI6MTc1NzIzMDIwNCwiZXhwIjoxNzU3MjMzODA0fQ.u9sRnlih6k2BBsPy1rxQpQyM9K8Nt-WeYIITHuPiXaA</sessionToken>
+</response>
+```

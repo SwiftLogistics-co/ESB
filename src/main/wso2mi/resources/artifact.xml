@@ -24,26 +24,26 @@
       <properties></properties>
     </item>
   </artifact>
-  <artifact name="resources_datamapper_userLoginResponceMapper_userLoginResponceMapper_dmc" groupId="com.microintegrator.projects" version="1.0.0" type="registry/resource" serverRole="EnterpriseIntegrator">
+  <artifact name="resources_datamapper_userLoginResponseMapper_userLoginResponseMapper_dmc" groupId="com.microintegrator.projects" version="1.0.0" type="registry/resource" serverRole="EnterpriseIntegrator">
     <item>
-      <file>userLoginResponceMapper.dmc</file>
-      <path>/_system/governance/mi-resources/datamapper/userLoginResponceMapper</path>
+      <file>userLoginResponseMapper.dmc</file>
+      <path>/_system/governance/mi-resources/datamapper/userLoginResponseMapper</path>
       <mediaType>text/plain</mediaType>
       <properties></properties>
     </item>
   </artifact>
-  <artifact name="resources_datamapper_userLoginResponceMapper_userLoginResponceMapper_inputSchema_json" groupId="com.microintegrator.projects" version="1.0.0" type="registry/resource" serverRole="EnterpriseIntegrator">
+  <artifact name="resources_datamapper_userLoginResponseMapper_userLoginResponseMapper_inputSchema_json" groupId="com.microintegrator.projects" version="1.0.0" type="registry/resource" serverRole="EnterpriseIntegrator">
     <item>
-      <file>userLoginResponceMapper_inputSchema.json</file>
-      <path>/_system/governance/mi-resources/datamapper/userLoginResponceMapper</path>
+      <file>userLoginResponseMapper_inputSchema.json</file>
+      <path>/_system/governance/mi-resources/datamapper/userLoginResponseMapper</path>
       <mediaType>text/plain</mediaType>
       <properties></properties>
     </item>
   </artifact>
-  <artifact name="resources_datamapper_userLoginResponceMapper_userLoginResponceMapper_outputSchema_json" groupId="com.microintegrator.projects" version="1.0.0" type="registry/resource" serverRole="EnterpriseIntegrator">
+  <artifact name="resources_datamapper_userLoginResponseMapper_userLoginResponseMapper_outputSchema_json" groupId="com.microintegrator.projects" version="1.0.0" type="registry/resource" serverRole="EnterpriseIntegrator">
     <item>
-      <file>userLoginResponceMapper_outputSchema.json</file>
-      <path>/_system/governance/mi-resources/datamapper/userLoginResponceMapper</path>
+      <file>userLoginResponseMapper_outputSchema.json</file>
+      <path>/_system/governance/mi-resources/datamapper/userLoginResponseMapper</path>
       <mediaType>text/plain</mediaType>
       <properties/>
     </item>

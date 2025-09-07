@@ -16,8 +16,14 @@
                 <responseVariable>http_post_1</responseVariable>
                 <overwriteBody>true</overwriteBody>
             </http.post>
-            <datamapper config="resources:datamapper/userLoginResponceMapper/userLoginResponceMapper.dmc" inputSchema="resources:datamapper/userLoginResponceMapper/userLoginResponceMapper_inputSchema.json" outputSchema="resources:datamapper/userLoginResponceMapper/userLoginResponceMapper_outputSchema.json"/>
+            <datamapper config="resources:datamapper/userLoginResponseMapper/userLoginResponseMapper.dmc" inputSchema="resources:datamapper/userLoginResponseMapper/userLoginResponseMapper_inputSchema.json" outputSchema="resources:datamapper/userLoginResponseMapper/userLoginResponseMapper_outputSchema.json"/>
             <respond/>
+        </inSequence>
+        <faultSequence>
+        </faultSequence>
+    </resource>
+    <resource methods="GET" uri-template="/orders">
+        <inSequence>
         </inSequence>
         <faultSequence>
         </faultSequence>
