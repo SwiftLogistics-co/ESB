@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<api context="/customer_login" name="customerLoginApi" xmlns="http://ws.apache.org/ns/synapse">
+<api context="/cms/api" name="customerLogin" xmlns="http://ws.apache.org/ns/synapse">
     <resource methods="POST" uri-template="/">
         <inSequence>
             <!-- CORS Preflight -->
@@ -49,11 +49,10 @@
                     <arg expression="//user/email/text()"/>
                 </args>
             </payloadFactory>
-
             <!-- Extract message for Kafka -->
-            <property name="loginMessage" scope="default" type="STRING" expression="${payload.message}"/>
+            <!-- <property name="loginMessage" scope="default" type="STRING" expression="${payload.message}"/> -->
             <!-- Publish login event to Kafka -->
-            <kafkaTransport.publishMessages configKey="login">
+            <!-- <kafkaTransport.publishMessages configKey="login">
                 <topic>login</topic>
                 <partitionNo>1</partitionNo>
                 <key>status</key>
@@ -73,7 +72,7 @@
                 <forwardExistingHeaders>None</forwardExistingHeaders>
                 <customHeaders>[]</customHeaders>
                 <customHeaderExpression></customHeaderExpression>
-            </kafkaTransport.publishMessages>
+            </kafkaTransport.publishMessages> -->
             <!-- response -->
             <respond/>
         </inSequence>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<artifacts>
+  <artifact name="resources_datamapper_userLoginMapper_userLoginMapper_dmc" groupId="com.microintegrator.projects" version="1.0.0" type="registry/resource" serverRole="EnterpriseIntegrator">
+    <item>
+      <file>userLoginMapper.dmc</file>
+      <path>/_system/governance/mi-resources/datamapper/userLoginMapper</path>
+      <mediaType>text/plain</mediaType>
+      <properties></properties>
+    </item>
+  </artifact>
+  <artifact name="resources_datamapper_userLoginMapper_userLoginMapper_inputSchema_json" groupId="com.microintegrator.projects" version="1.0.0" type="registry/resource" serverRole="EnterpriseIntegrator">
+    <item>
+      <file>userLoginMapper_inputSchema.json</file>
+      <path>/_system/governance/mi-resources/datamapper/userLoginMapper</path>
+      <mediaType>text/plain</mediaType>
+      <properties></properties>
+    </item>
+  </artifact>
+  <artifact name="resources_datamapper_userLoginMapper_userLoginMapper_outputSchema_json" groupId="com.microintegrator.projects" version="1.0.0" type="registry/resource" serverRole="EnterpriseIntegrator">
+    <item>
+      <file>userLoginMapper_outputSchema.json</file>
+      <path>/_system/governance/mi-resources/datamapper/userLoginMapper</path>
+      <mediaType>text/plain</mediaType>
+      <properties></properties>
+    </item>
+  </artifact>
+  <artifact name="resources_datamapper_userLoginResponceMapper_userLoginResponceMapper_dmc" groupId="com.microintegrator.projects" version="1.0.0" type="registry/resource" serverRole="EnterpriseIntegrator">
+    <item>
+      <file>userLoginResponceMapper.dmc</file>
+      <path>/_system/governance/mi-resources/datamapper/userLoginResponceMapper</path>
+      <mediaType>text/plain</mediaType>
+      <properties></properties>
+    </item>
+  </artifact>
+  <artifact name="resources_datamapper_userLoginResponceMapper_userLoginResponceMapper_inputSchema_json" groupId="com.microintegrator.projects" version="1.0.0" type="registry/resource" serverRole="EnterpriseIntegrator">
+    <item>
+      <file>userLoginResponceMapper_inputSchema.json</file>
+      <path>/_system/governance/mi-resources/datamapper/userLoginResponceMapper</path>
+      <mediaType>text/plain</mediaType>
+      <properties></properties>
+    </item>
+  </artifact>
+  <artifact name="resources_datamapper_userLoginResponceMapper_userLoginResponceMapper_outputSchema_json" groupId="com.microintegrator.projects" version="1.0.0" type="registry/resource" serverRole="EnterpriseIntegrator">
+    <item>
+      <file>userLoginResponceMapper_outputSchema.json</file>
+      <path>/_system/governance/mi-resources/datamapper/userLoginResponceMapper</path>
+      <mediaType>text/plain</mediaType>
+      <properties/>
+    </item>
+  </artifact>
+</artifacts>

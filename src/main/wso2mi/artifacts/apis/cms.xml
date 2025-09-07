@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/cms" name="cms" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="POST" uri-template="/login">
+        <inSequence>
+            <datamapper config="resources:datamapper/userLoginMapper/userLoginMapper.dmc" inputSchema="resources:datamapper/userLoginMapper/userLoginMapper_inputSchema.json" outputSchema="resources:datamapper/userLoginMapper/userLoginMapper_outputSchema.json"/>
+            <http.post configKey="cms-api">
+                <relativePath>/auth/login</relativePath>
+                <headers>[]</headers>
+                <requestBodyType>XML</requestBodyType>
+                <requestBodyXml>${xpath('$body/node()')}</requestBodyXml>
+                <forceScAccepted>false</forceScAccepted>
+                <disableChunking>false</disableChunking>
+                <forceHttp10>false</forceHttp10>
+                <noKeepAlive>false</noKeepAlive>
+                <forcePostPutNobody>false</forcePostPutNobody>
+                <responseVariable>http_post_1</responseVariable>
+                <overwriteBody>true</overwriteBody>
+            </http.post>
+            <datamapper config="resources:datamapper/userLoginResponceMapper/userLoginResponceMapper.dmc" inputSchema="resources:datamapper/userLoginResponceMapper/userLoginResponceMapper_inputSchema.json" outputSchema="resources:datamapper/userLoginResponceMapper/userLoginResponceMapper_outputSchema.json"/>
+            <respond/>
+        </inSequence>
+        <faultSequence>
+        </faultSequence>
+    </resource>
+</api>

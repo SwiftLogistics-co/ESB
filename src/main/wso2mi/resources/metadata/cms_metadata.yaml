@@ -1,0 +1,10 @@
+---
+key: "cms-1.0.0"
+name : "cms"
+displayName : "cms"
+description: "cms"
+version: "1.0.0"
+serviceUrl: "https://{MI_HOST}:{MI_PORT}/cms"
+definitionType: "OAS3"
+securityType: "BASIC"
+mutualSSLEnabled: false
