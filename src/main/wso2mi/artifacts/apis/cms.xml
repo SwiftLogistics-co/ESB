@@ -24,6 +24,7 @@
     </resource>
     <resource methods="GET" uri-template="/orders">
         <inSequence>
+            <respond/>
         </inSequence>
         <faultSequence>
         </faultSequence>
