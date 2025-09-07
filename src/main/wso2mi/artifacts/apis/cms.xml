@@ -45,9 +45,10 @@
                         <property name="synapse.commons.json.output.jsonoutAutoArray" value="true"/>
                         <property name="synapse.commons.json.preserve.namespace" value="false"/>
                     </jsontransform>
-                    <!-- Convert XML to JSON automatically -->
+                    <!-- The same 2 magical lines! -->
                     <property name="messageType" value="application/json" scope="axis2"/>
                     <property name="ContentType" value="application/json" scope="axis2"/>
+                    <!-- Log the converted JSON (optional) -->
                     <respond/>
                 </else>
             </filter>
