@@ -35,9 +35,9 @@
                     "message": "$2",
                     "accessToken": "$3",
                     "user":{
-                        "id": "$4",
-                        "username": "$5",
-                        "name": "kasun"
+                    "id": "$4",
+                    "username": "$5",
+                    "name": "kasun"
                     }
                     }
                 </format>
@@ -49,7 +49,32 @@
                     <arg expression="//user/email/text()"/>
                 </args>
             </payloadFactory>
-            <!-- CORS Headers -->
+
+            <!-- Extract message for Kafka -->
+            <property name="loginMessage" scope="default" type="STRING" expression="${payload.message}"/>
+            <!-- Publish login event to Kafka -->
+            <kafkaTransport.publishMessages configKey="login">
+                <topic>login</topic>
+                <partitionNo>1</partitionNo>
+                <key>status</key>
+                <keySchema></keySchema>
+                <keySchemaId></keySchemaId>
+                <keySchemaMetadata></keySchemaMetadata>
+                <valueSchema></valueSchema>
+                <valueSchemaId></valueSchemaId>
+                <keySchemaSubject></keySchemaSubject>
+                <keySchemaVersion></keySchemaVersion>
+                <keySchemaSoftDeleted>false</keySchemaSoftDeleted>
+                <valueSchemaSubject></valueSchemaSubject>
+                <valueSchemaVersion></valueSchemaVersion>
+                <valueSchemaMetadata></valueSchemaMetadata>
+                <valueSchemaSoftDeleted>false</valueSchemaSoftDeleted>
+                <value>user loged in</value>
+                <forwardExistingHeaders>None</forwardExistingHeaders>
+                <customHeaders>[]</customHeaders>
+                <customHeaderExpression></customHeaderExpression>
+            </kafkaTransport.publishMessages>
+            <!-- response -->
             <respond/>
         </inSequence>
         <faultSequence>

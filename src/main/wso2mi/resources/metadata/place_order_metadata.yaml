@@ -1,0 +1,10 @@
+---
+key: "place_order-1.0.0"
+name : "place_order"
+displayName : "place_order"
+description: "place_order"
+version: "1.0.0"
+serviceUrl: "https://{MI_HOST}:{MI_PORT}/place_order"
+definitionType: "OAS3"
+securityType: "BASIC"
+mutualSSLEnabled: false
