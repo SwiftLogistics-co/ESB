@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<artifacts>
+  <artifact name="resources_datamapper_userLoginMapper_userLoginMapper_dmc" groupId="com.microintegrator.projects" version="1.0.0" type="registry/resource" serverRole="EnterpriseIntegrator">
+    <item>
+      <file>userLoginMapper.dmc</file>
+      <path>/_system/governance/mi-resources/datamapper/userLoginMapper</path>
+      <mediaType>text/plain</mediaType>
+      <properties></properties>
+    </item>
+  </artifact>
+  <artifact name="resources_datamapper_userLoginMapper_userLoginMapper_inputSchema_json" groupId="com.microintegrator.projects" version="1.0.0" type="registry/resource" serverRole="EnterpriseIntegrator">
+    <item>
+      <file>userLoginMapper_inputSchema.json</file>
+      <path>/_system/governance/mi-resources/datamapper/userLoginMapper</path>
+      <mediaType>text/plain</mediaType>
+      <properties></properties>
+    </item>
+  </artifact>
+  <artifact name="resources_datamapper_userLoginMapper_userLoginMapper_outputSchema_json" groupId="com.microintegrator.projects" version="1.0.0" type="registry/resource" serverRole="EnterpriseIntegrator">
+    <item>
+      <file>userLoginMapper_outputSchema.json</file>
+      <path>/_system/governance/mi-resources/datamapper/userLoginMapper</path>
+      <mediaType>text/plain</mediaType>
+      <properties></properties>
+    </item>
+  </artifact>
+  <artifact name="resources_datamapper_userLoginResponseMapper_userLoginResponseMapper_dmc" groupId="com.microintegrator.projects" version="1.0.0" type="registry/resource" serverRole="EnterpriseIntegrator">
+    <item>
+      <file>userLoginResponseMapper.dmc</file>
+      <path>/_system/governance/mi-resources/datamapper/userLoginResponseMapper</path>
+      <mediaType>text/plain</mediaType>
+      <properties></properties>
+    </item>
+  </artifact>
+  <artifact name="resources_datamapper_userLoginResponseMapper_userLoginResponseMapper_inputSchema_json" groupId="com.microintegrator.projects" version="1.0.0" type="registry/resource" serverRole="EnterpriseIntegrator">
+    <item>
+      <file>userLoginResponseMapper_inputSchema.json</file>
+      <path>/_system/governance/mi-resources/datamapper/userLoginResponseMapper</path>
+      <mediaType>text/plain</mediaType>
+      <properties></properties>
+    </item>
+  </artifact>
+  <artifact name="resources_datamapper_userLoginResponseMapper_userLoginResponseMapper_outputSchema_json" groupId="com.microintegrator.projects" version="1.0.0" type="registry/resource" serverRole="EnterpriseIntegrator">
+    <item>
+      <file>userLoginResponseMapper_outputSchema.json</file>
+      <path>/_system/governance/mi-resources/datamapper/userLoginResponseMapper</path>
+      <mediaType>text/plain</mediaType>
+      <properties></properties>
+    </item>
+  </artifact>
+  <artifact name="resources_datamapper_orderResponseMapper_orderResponseMapper_dmc" groupId="com.microintegrator.projects" version="1.0.0" type="registry/resource" serverRole="EnterpriseIntegrator">
+    <item>
+      <file>orderResponseMapper.dmc</file>
+      <path>/_system/governance/mi-resources/datamapper/orderResponseMapper</path>
+      <mediaType>text/plain</mediaType>
+      <properties></properties>
+    </item>
+  </artifact>
+  <artifact name="resources_datamapper_orderResponseMapper_orderResponseMapper_inputSchema_json" groupId="com.microintegrator.projects" version="1.0.0" type="registry/resource" serverRole="EnterpriseIntegrator">
+    <item>
+      <file>orderResponseMapper_inputSchema.json</file>
+      <path>/_system/governance/mi-resources/datamapper/orderResponseMapper</path>
+      <mediaType>text/plain</mediaType>
+      <properties></properties>
+    </item>
+  </artifact>
+  <artifact name="resources_datamapper_orderResponseMapper_orderResponseMapper_outputSchema_json" groupId="com.microintegrator.projects" version="1.0.0" type="registry/resource" serverRole="EnterpriseIntegrator">
+    <item>
+      <file>orderResponseMapper_outputSchema.json</file>
+      <path>/_system/governance/mi-resources/datamapper/orderResponseMapper</path>
+      <mediaType>text/plain</mediaType>
+      <properties></properties>
+    </item>
+  </artifact>
+  <artifact name="resources_xml_xtoj_xml" groupId="com.microintegrator.projects" version="1.0.0" type="registry/resource" serverRole="EnterpriseIntegrator">
+    <item>
+      <file>xtoj.xml</file>
+      <path>/_system/governance/mi-resources/xml</path>
+      <mediaType>application/xml</mediaType>
+      <properties/>
+    </item>
+  </artifact>
+</artifacts>

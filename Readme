@@ -1,0 +1,120 @@
+## login 
+### client side
+reqest from client
+``` json
+  {
+    "username": "driver1@swift.com",
+    "password": "hashpass1"
+  }
+```
+responce 
+``` json
+{
+  "status": "success",
+  "message": "Login successful",
+  "accessToken": "",
+  "user": {
+    "id": "1",
+    "username": "driver1@swift.com",
+    "name": "kasun"
+  }
+}
+```
+### cms side
+reqest to cms
+``` xml 
+<login>
+    <email>driver1@swift.com</email>
+    <password>hashpass1</password>
+</login>
+```
+response from cms
+``` xml
+<?xml version="1.0"?>
+<response>
+    <status>success</status>
+    <message>Login successful</message>
+    <user>
+        <id>1</id>
+        <email>driver1@swift.com</email>
+    </user>
+    <sessionToken>eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJkcml2ZXIxQHN3aWZ0LmNvbSIsImlhdCI6MTc1NzIzMDIwNCwiZXhwIjoxNzU3MjMzODA0fQ.u9sRnlih6k2BBsPy1rxQpQyM9K8Nt-WeYIITHuPiXaA</sessionToken>
+</response>
+```
+
+### order service
+
+cms request
+``` bash
+curl -X GET http://localhost:3000/orders \
+-H "Authorization: Bearer <YOUR_TOKEN_HERE>"
+```
+cms response
+``` xml
+<?xml version="1.0"?>
+<response>
+  <status>success</status>
+  <orders>
+    <order>
+      <id>3</id>
+      <product>Example Product</product>
+      <quantity>2</quantity>
+      <status>pending</status>
+      <address>123 Street, City</address>
+      <route_id>5</route_id>
+      <created_at>2025-09-03T21:17:51.543955</created_at>
+    </order>
+    <order>
+      <id>2</id>
+      <product>Shoes</product>
+      <quantity>2</quantity>
+      <status>pending</status>
+      <address>123 Main St</address>
+      <route_id/>
+      <created_at>2025-09-03T18:20:35.479132</created_at>
+    </order>
+    <order>
+      <id>1</id>
+      <product>Shoes</product>
+      <quantity>2</quantity>
+      <status>pending</status>
+      <address>123 Main St</address>
+      <route_id>2</route_id>
+      <created_at>2025-09-03T18:13:31.65724</created_at>
+    </order>
+  </orders>
+</response>  
+```
+client response
+
+``` json 
+{
+  "response": {
+    "status": "success",
+    "orders": {
+      "order": [
+        {
+          "id": 3,
+          "product": "Example Product",
+          "quantity": 2,
+          "status": "pending",
+          "address": "123 Street, City",
+          "route_id": 5,
+          "created_at": "2025-09-03T21:17:51.543955"
+        },
+        {
+          "id": 2,
+          "product": "Shoes",
+          "quantity": 2,
+          "status": "pending",
+          "address": "123 Main St",
+          "route_id": null,
+          "created_at": "2025-09-03T18:20:35.479132"
+        }
+      ]
+    }
+  }
+}
+
+```
+

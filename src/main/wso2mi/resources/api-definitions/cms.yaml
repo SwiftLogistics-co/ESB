@@ -1,12 +1,12 @@
 openapi: 3.0.1
 info:
-  title: customerLogin
-  description: API Definition of customerLogin
+  title: cms
+  description: API Definition of cms
   version: 1.0.0
 servers:
-- url: http://localhost:8290/cms/api
+- url: http://localhost:8290/cms
 paths:
-  /:
+  /login:
     post:
       requestBody:
         description: Sample Payload
@@ -23,6 +23,11 @@ paths:
               xml:
                 name: payload
         required: false
+      responses:
+        default:
+          description: Default response
+  /orders:
+    get:
       responses:
         default:
           description: Default response

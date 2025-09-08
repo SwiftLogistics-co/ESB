@@ -1,0 +1,10 @@
+---
+key: "testing-1.0.0"
+name : "testing"
+displayName : "testing"
+description: "testing"
+version: "1.0.0"
+serviceUrl: "https://{MI_HOST}:{MI_PORT}/testing"
+definitionType: "OAS3"
+securityType: "BASIC"
+mutualSSLEnabled: false

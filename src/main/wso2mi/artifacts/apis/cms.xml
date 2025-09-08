@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/cms" name="cms" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="POST" uri-template="/login">
+        <inSequence>
+            <datamapper config="resources:datamapper/userLoginMapper/userLoginMapper.dmc" inputSchema="resources:datamapper/userLoginMapper/userLoginMapper_inputSchema.json" outputSchema="resources:datamapper/userLoginMapper/userLoginMapper_outputSchema.json"/>
+            <http.post configKey="cms-api">
+                <relativePath>/auth/login</relativePath>
+                <headers>[]</headers>
+                <requestBodyType>XML</requestBodyType>
+                <requestBodyXml>${xpath('$body/node()')}</requestBodyXml>
+                <forceScAccepted>false</forceScAccepted>
+                <disableChunking>false</disableChunking>
+                <forceHttp10>false</forceHttp10>
+                <noKeepAlive>false</noKeepAlive>
+                <forcePostPutNobody>false</forcePostPutNobody>
+                <responseVariable>http_post_1</responseVariable>
+                <overwriteBody>true</overwriteBody>
+            </http.post>
+            <datamapper config="resources:datamapper/userLoginResponseMapper/userLoginResponseMapper.dmc" inputSchema="resources:datamapper/userLoginResponseMapper/userLoginResponseMapper_inputSchema.json" outputSchema="resources:datamapper/userLoginResponseMapper/userLoginResponseMapper_outputSchema.json"/>
+            <respond/>
+        </inSequence>
+        <faultSequence>
+        </faultSequence>
+    </resource>
+    <resource methods="GET" uri-template="/orders">
+        <inSequence>
+            <!-- Call backend -->
+            <http.get configKey="cms-api">
+                <relativePath>/orders</relativePath>
+                <overwriteBody>true</overwriteBody>
+            </http.get>
+            <!-- Handle fail (missing token) -->
+            <filter xpath="//response/status = 'fail'">
+                <then>
+                    <payloadFactory media-type="json">
+                        <format>{ "status": "fail", "message": "$1" }</format>
+                        <args>
+                            <arg evaluator="xml" expression="//response/message/text()"/>
+                        </args>
+                    </payloadFactory>
+                    <respond/>
+                </then>
+                <else>
+                    <jsontransform>
+                        <property name="synapse.commons.json.output.jsonoutAutoArray" value="true"/>
+                        <property name="synapse.commons.json.preserve.namespace" value="false"/>
+                    </jsontransform>
+                    <!-- The same 2 magical lines! -->
+                    <property name="messageType" value="application/json" scope="axis2"/>
+                    <property name="ContentType" value="application/json" scope="axis2"/>
+                    <!-- Log the converted JSON (optional) -->
+                    <respond/>
+                </else>
+            </filter>
+        </inSequence>
+    </resource>
+</api>
