@@ -10,7 +10,7 @@ interface Root {
         quantity: number;
         address: string;
         route: number;
-        cordinate: number[];
+        coordinate: number[];
     };
 }
 
@@ -40,8 +40,8 @@ export function mapFunction(input: Root): Order {
         address: input.order.address,
         route_id: input.order.route,
         coordinates: {
-            lat: input.order.cordinate[0],
-            lng: input.order.cordinate[1]
+            lat: input.order.coordinate[0],
+            lng: input.order.coordinate[1]
         }
     };
 }
