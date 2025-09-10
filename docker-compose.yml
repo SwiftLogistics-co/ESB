@@ -1,0 +1,19 @@
+services:
+  swift-logistics-esb:
+    build:
+      context: deployment/docker
+      dockerfile: Dockerfile
+    container_name: swift-logistics-esb
+    ports:
+      - "8290:8290"  # HTTP transport
+      - "8253:8253"  # HTTPS transport
+      - "9164:9164"  # Management API
+    volumes:
+      - ./deployment/deployment.toml:/home/wso2carbon/wso2mi-4.4.0/conf/deployment.toml
+    networks:
+      - swift-logistics-network
+    restart: unless-stopped
+
+networks:
+  swift-logistics-network:
+    driver: bridge

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/ros" name="ROS" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="GET" uri-template="/driver/optimize-routes?driverid={driverid}">
+        <inSequence>
+            <http.get configKey="cms-api">
+                <relativePath>/orders/mock/driver/routes</relativePath>
+                <headers>[]</headers>
+                <forceScAccepted>false</forceScAccepted>
+                <disableChunking>false</disableChunking>
+                <forceHttp10>false</forceHttp10>
+                <noKeepAlive>false</noKeepAlive>
+                <responseVariable>http_get_1</responseVariable>
+                <overwriteBody>true</overwriteBody>
+            </http.get>
+
+
+            <jsontransform>
+                <property name="synapse.commons.json.output.jsonoutAutoArray" value="true"/>
+                <property name="synapse.commons.json.preserve.namespace" value="false"/>
+                <property name="synapse.commons.json.output.autoPrimitive" value="true"/>
+            </jsontransform>
+            
+            <property name="messageType" value="application/json" scope="axis2"/>
+            <property name="ContentType" value="application/json" scope="axis2"/>
+            
+            <respond/>
+        </inSequence>
+        <faultSequence>
+        </faultSequence>
+    </resource>
+</api>
