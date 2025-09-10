@@ -1,27 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <api context="/ros" name="ROS" xmlns="http://ws.apache.org/ns/synapse">
-    <resource methods="GET" uri-template="/driver/optimize-routes?driverid={driverid}">
+    <resource methods="GET" uri-template="/driver/optimizeRoutes?driverid={driverid}">
         <inSequence>
+            <payloadFactory media-type="json" template-type="default">
+                <format>{"id":${params.queryParams.driverid}}</format>
+            </payloadFactory>
             <http.get configKey="cms-api">
-                <relativePath>/orders/mock/driver/routes</relativePath>
+                <relativePath><![CDATA[/orders/getByDriver/?driverId=${params.queryParams.driverid}&status=loaded]]></relativePath>
+                <overwriteBody>true</overwriteBody>
+            </http.get>
+            <!-- <jsontransform>
+                <property name="synapse.commons.json.output.jsonoutAutoArray" value="true"/>
+                <property name="synapse.commons.json.preserve.namespace" value="false"/>
+            </jsontransform> -->
+            <!-- Set content type for JSON -->
+            <!-- <property name="messageType" value="application/json" scope="axis2"/>
+            <property name="ContentType" value="application/json" scope="axis2"/> -->
+            <!-- Forward the JSON payload to ROS service -->
+            <!-- <http.post configKey="ros-service">
+                <relativePath>/optimize-coordinates</relativePath>
                 <headers>[]</headers>
+                <requestBodyType>JSON</requestBodyType>
+                <requestBodyJson>${payload}</requestBodyJson>
                 <forceScAccepted>false</forceScAccepted>
                 <disableChunking>false</disableChunking>
                 <forceHttp10>false</forceHttp10>
                 <noKeepAlive>false</noKeepAlive>
-                <responseVariable>http_get_1</responseVariable>
-                <overwriteBody>true</overwriteBody>
-            </http.get>
-
-
-            <jsontransform>
-                <property name="synapse.commons.json.output.jsonoutAutoArray" value="true"/>
-                <property name="synapse.commons.json.preserve.namespace" value="false"/>
-                <property name="synapse.commons.json.output.autoPrimitive" value="true"/>
-            </jsontransform>
-            
-            <property name="messageType" value="application/json" scope="axis2"/>
-            <property name="ContentType" value="application/json" scope="axis2"/>
+                <forcePostPutNobody>false</forcePostPutNobody>
+                <responseVariable>http_post_285</responseVariable>
+                <overwriteBody>false</overwriteBody>
+            </http.post> -->
+            <!-- Ensure response is JSON -->
+            <!-- <property name="messageType" value="application/json" scope="axis2"/>
+            <property name="ContentType" value="application/json" scope="axis2"/> -->
             
             <respond/>
         </inSequence>

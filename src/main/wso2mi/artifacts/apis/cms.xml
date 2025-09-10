@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <api context="/cms" name="cms" xmlns="http://ws.apache.org/ns/synapse">
+   
     <resource methods="POST" uri-template="/login">
         <inSequence>
             <datamapper config="resources:datamapper/userLoginMapper/userLoginMapper.dmc" inputSchema="resources:datamapper/userLoginMapper/userLoginMapper_inputSchema.json" outputSchema="resources:datamapper/userLoginMapper/userLoginMapper_outputSchema.json"/>
@@ -22,11 +23,18 @@
         <faultSequence>
         </faultSequence>
     </resource>
-    <resource methods="GET" uri-template="/orders">
+
+    <resource methods="GET" uri-template="/getOrdersByCustomer">
         <inSequence>
             <!-- Call backend -->
             <http.get configKey="cms-api">
-                <relativePath>/orders</relativePath>
+                <relativePath>/orders/getByCustomer</relativePath>
+                <headers>[]</headers>
+                <forceScAccepted>false</forceScAccepted>
+                <disableChunking>false</disableChunking>
+                <forceHttp10>false</forceHttp10>
+                <noKeepAlive>false</noKeepAlive>
+                <responseVariable>http_get_57</responseVariable>
                 <overwriteBody>true</overwriteBody>
             </http.get>
             <!-- Handle fail (missing token) -->
@@ -60,7 +68,7 @@
             <datamapper config="resources:datamapper/new-orderMapper/new-orderMapper.dmc" inputSchema="resources:datamapper/new-orderMapper/new-orderMapper_inputSchema.json" outputSchema="resources:datamapper/new-orderMapper/new-orderMapper_outputSchema.json"/><!-- Step 1: Convert incoming JSON to XML for backend -->
             <!-- Step 2: Send to backend -->
             <http.post configKey="cms-api">
-                <relativePath>/orders</relativePath>
+                <relativePath>/orders/createOrder</relativePath>
                 <headers>[]</headers>
                 <requestBodyType>XML</requestBodyType>
                 <requestBodyXml>${xpath('$body/node()')}</requestBodyXml>
@@ -78,19 +86,15 @@
                 <property name="synapse.commons.json.preserve.namespace" value="false"/>
                 <property name="synapse.commons.json.output.autoPrimitive" value="true"/>
             </jsontransform>
-            
             <property name="messageType" value="application/json" scope="axis2"/>
             <property name="ContentType" value="application/json" scope="axis2"/>
-            
             <respond/>
         </inSequence>
-        
         <faultSequence>
             <log level="custom">
                 <property name="error" value="Error occurred"/>
                 <property name="errorDetail" expression="get-property('ERROR_MESSAGE')"/>
             </log>
-            
             <payloadFactory media-type="json">
                 <format>
                     {
@@ -99,7 +103,6 @@
                     }
                 </format>
             </payloadFactory>
-            
             <property name="HTTP_SC" value="500" scope="axis2"/>
             <respond/>
         </faultSequence>

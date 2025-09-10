@@ -6,7 +6,7 @@ info:
 servers:
 - url: http://localhost:8290/ros
 paths:
-  /driver/optimize-routes:
+  /driver/optimizeRoutes:
     get:
       parameters:
       - name: driverid
