@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/wms" name="WMS" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="GET PUT" uri-template="/updateOrderStatus/{orderId}/{status}">
+        <inSequence>
+            <http.put configKey="wms-service">
+                <relativePath>/api/wms/orders/${params.pathParams.orderId}/${params.pathParams.status}</relativePath>
+                <headers>[]</headers>
+                <requestBodyType>JSON</requestBodyType>
+                <requestBodyJson>${payload}</requestBodyJson>
+                <forceScAccepted>false</forceScAccepted>
+                <disableChunking>false</disableChunking>
+                <forceHttp10>false</forceHttp10>
+                <noKeepAlive>false</noKeepAlive>
+                <forcePostPutNobody>false</forcePostPutNobody>
+                <responseVariable>http_put_1</responseVariable>
+                <overwriteBody>true</overwriteBody>
+            </http.put>
+            <respond/>
+        </inSequence>
+        <faultSequence>
+        </faultSequence>
+    </resource>
+</api>
