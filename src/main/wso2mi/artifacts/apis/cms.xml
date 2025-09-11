@@ -107,4 +107,42 @@
             <respond/>
         </faultSequence>
     </resource>
+
+
+    <resource methods="GET" uri-template="/getOrderByDriverAndStatus?driverId={driverId}&amp;status={status}">
+        <inSequence>
+            <http.get configKey="cms-api">
+                <relativePath><![CDATA[/orders/getByDriver?driver_id=${params.queryParams.driverId}&status=${params.queryParams.status}]]></relativePath>
+                <headers>[]</headers>
+                <forceScAccepted>false</forceScAccepted>
+                <disableChunking>false</disableChunking>
+                <forceHttp10>false</forceHttp10>
+                <noKeepAlive>false</noKeepAlive>
+                <responseVariable>http_get_1</responseVariable>
+                <overwriteBody>true</overwriteBody>
+            </http.get>
+
+            <jsontransform>
+                <property name="synapse.commons.json.output.jsonoutAutoArray" value="true"/>
+                <property name="synapse.commons.json.preserve.namespace" value="false"/>
+                <property name="synapse.commons.json.output.autoPrimitive" value="true"/>
+            </jsontransform>
+            <property name="messageType" value="application/json" scope="axis2"/>
+            <property name="ContentType" value="application/json" scope="axis2"/>
+            <!-- <datamapper config="resources:datamapper/orderlist_enhance_from_cms/orderlist_enhance_from_cms.dmc" inputSchema="resources:datamapper/orderlist_enhance_from_cms/orderlist_enhance_from_cms_inputSchema.json" outputSchema="resources:datamapper/orderlist_enhance_from_cms/orderlist_enhance_from_cms_outputSchema.json"/> -->
+            <respond/>
+        </inSequence>
+        <faultSequence>
+            <payloadFactory media-type="json">
+                <format>
+                    {
+                    "error": "Internal server error",
+                    "message": "Failed to process order"
+                    }
+                </format>
+            </payloadFactory>
+            <property name="HTTP_SC" value="500" scope="axis2"/>
+            <respond/>
+        </faultSequence>
+    </resource>
 </api>

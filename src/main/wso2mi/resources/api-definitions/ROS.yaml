@@ -6,11 +6,37 @@ info:
 servers:
 - url: http://localhost:8290/ros
 paths:
-  /driver/optimizeRoutes:
+  /optimizeRoutes:
+    post:
+      requestBody:
+        description: Sample Payload
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                payload:
+                  type: object
+          application/xml:
+            schema:
+              type: object
+              xml:
+                name: payload
+        required: false
+      responses:
+        default:
+          description: Default response
+  /getOrderByDriverAndStatus:
+    get:
+      responses:
+        default:
+          description: Default response
+  /driver/routes/{driverId}:
     get:
       parameters:
-      - name: driverid
-        in: query
+      - name: driverId
+        in: path
+        required: true
         schema:
           type: string
       responses:

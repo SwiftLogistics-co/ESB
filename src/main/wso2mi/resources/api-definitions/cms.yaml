@@ -51,3 +51,17 @@ paths:
       responses:
         default:
           description: Default response
+  /getOrderByDriverAndStatus:
+    get:
+      parameters:
+      - name: driverId
+        in: query
+        schema:
+          type: string
+      - name: status
+        in: query
+        schema:
+          type: string
+      responses:
+        default:
+          description: Default response

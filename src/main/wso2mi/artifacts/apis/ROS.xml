@@ -1,23 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <api context="/ros" name="ROS" xmlns="http://ws.apache.org/ns/synapse">
-    <resource methods="GET" uri-template="/driver/optimizeRoutes?driverid={driverid}">
+    
+    <resource methods="POST" uri-template="/optimizeRoutes">
         <inSequence>
-            <payloadFactory media-type="json" template-type="default">
-                <format>{"id":${params.queryParams.driverid}}</format>
-            </payloadFactory>
-            <http.get configKey="cms-api">
-                <relativePath><![CDATA[/orders/getByDriver/?driverId=${params.queryParams.driverid}&status=loaded]]></relativePath>
-                <overwriteBody>true</overwriteBody>
-            </http.get>
-            <!-- <jsontransform>
-                <property name="synapse.commons.json.output.jsonoutAutoArray" value="true"/>
-                <property name="synapse.commons.json.preserve.namespace" value="false"/>
-            </jsontransform> -->
-            <!-- Set content type for JSON -->
-            <!-- <property name="messageType" value="application/json" scope="axis2"/>
-            <property name="ContentType" value="application/json" scope="axis2"/> -->
-            <!-- Forward the JSON payload to ROS service -->
-            <!-- <http.post configKey="ros-service">
+            <http.post configKey="ros-service">
                 <relativePath>/optimize-coordinates</relativePath>
                 <headers>[]</headers>
                 <requestBodyType>JSON</requestBodyType>
@@ -27,16 +13,103 @@
                 <forceHttp10>false</forceHttp10>
                 <noKeepAlive>false</noKeepAlive>
                 <forcePostPutNobody>false</forcePostPutNobody>
-                <responseVariable>http_post_285</responseVariable>
-                <overwriteBody>false</overwriteBody>
-            </http.post> -->
-            <!-- Ensure response is JSON -->
-            <!-- <property name="messageType" value="application/json" scope="axis2"/>
-            <property name="ContentType" value="application/json" scope="axis2"/> -->
+                <responseVariable>http_post_1</responseVariable>
+                <overwriteBody>true</overwriteBody>
+            </http.post>
+            <respond/>
+        </inSequence>
+        <faultSequence>
+        </faultSequence>
+    </resource>
+
+    <resource methods="GET" uri-template="/getOrderByDriverAndStatus">
+        <inSequence>
+            <http.get configKey="cms-api">
+                <relativePath><![CDATA[/orders/getByDriver?driver_id=2&status=loaded]]></relativePath>
+                <headers>[]</headers>
+                <forceScAccepted>false</forceScAccepted>
+                <disableChunking>false</disableChunking>
+                <forceHttp10>false</forceHttp10>
+                <noKeepAlive>false</noKeepAlive>
+                <responseVariable>http_get_1</responseVariable>
+                <overwriteBody>true</overwriteBody>
+            </http.get>
+
+            <jsontransform>
+                <property name="synapse.commons.json.output.jsonoutAutoArray" value="true"/>
+                <property name="synapse.commons.json.preserve.namespace" value="false"/>
+                <property name="synapse.commons.json.output.autoPrimitive" value="true"/>
+            </jsontransform>
+            <property name="messageType" value="application/json" scope="axis2"/>
+            <property name="ContentType" value="application/json" scope="axis2"/>
+            <!-- <datamapper config="resources:datamapper/orderlist_enhance_from_cms/orderlist_enhance_from_cms.dmc" inputSchema="resources:datamapper/orderlist_enhance_from_cms/orderlist_enhance_from_cms_inputSchema.json" outputSchema="resources:datamapper/orderlist_enhance_from_cms/orderlist_enhance_from_cms_outputSchema.json"/> -->
+            <respond/>
+        </inSequence>
+        <faultSequence>
+            <payloadFactory media-type="json">
+                <format>
+                    {
+                    "error": "Internal server error",
+                    "message": "Failed to process order"
+                    }
+                </format>
+            </payloadFactory>
+            <property name="HTTP_SC" value="500" scope="axis2"/>
+            <respond/>
+        </faultSequence>
+    </resource>
+
+    <resource methods="GET" uri-template="/driver/routes/{driverId}">
+        <inSequence>
+            <http.get configKey="cms-api">
+                <relativePath><![CDATA[/orders/getByDriver?driver_id=${params.pathParams.driverId}&status=loaded]]></relativePath>
+                <headers>[]</headers>
+                <forceScAccepted>false</forceScAccepted>
+                <disableChunking>false</disableChunking>
+                <forceHttp10>false</forceHttp10>
+                <noKeepAlive>false</noKeepAlive>
+                <responseVariable>http_get_1</responseVariable>
+                <overwriteBody>true</overwriteBody>
+            </http.get>
+
+            <jsontransform>
+                <property name="synapse.commons.json.output.jsonoutAutoArray" value="true"/>
+                <property name="synapse.commons.json.preserve.namespace" value="false"/>
+                <property name="synapse.commons.json.output.autoPrimitive" value="true"/>
+            </jsontransform>
+
+            <property name="messageType" value="application/json" scope="axis2"/>
+            <property name="ContentType" value="application/json" scope="axis2"/>
+
+            <datamapper config="resources:datamapper/orderlist_enhance_from_cms/orderlist_enhance_from_cms.dmc" inputSchema="resources:datamapper/orderlist_enhance_from_cms/orderlist_enhance_from_cms_inputSchema.json" outputSchema="resources:datamapper/orderlist_enhance_from_cms/orderlist_enhance_from_cms_outputSchema.json"/>
+            
+            <http.post configKey="ros-service">
+                <relativePath>/optimize-coordinates</relativePath>
+                <headers>[]</headers>
+                <requestBodyType>JSON</requestBodyType>
+                <requestBodyJson>${payload}</requestBodyJson>
+                <forceScAccepted>false</forceScAccepted>
+                <disableChunking>false</disableChunking>
+                <forceHttp10>false</forceHttp10>
+                <noKeepAlive>false</noKeepAlive>
+                <forcePostPutNobody>false</forcePostPutNobody>
+                <responseVariable>http_post_1</responseVariable>
+                <overwriteBody>true</overwriteBody>
+            </http.post>
             
             <respond/>
         </inSequence>
         <faultSequence>
+            <payloadFactory media-type="json">
+                <format>
+                    {
+                    "error": "Internal server error",
+                    "message": "Failed to process order"
+                    }
+                </format>
+            </payloadFactory>
+            <property name="HTTP_SC" value="500" scope="axis2"/>
+            <respond/>
         </faultSequence>
     </resource>
 </api>

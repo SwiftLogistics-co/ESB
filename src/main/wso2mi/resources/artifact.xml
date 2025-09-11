@@ -101,6 +101,30 @@
       <file>new-orderMapper_outputSchema.json</file>
       <path>/_system/governance/mi-resources/datamapper/new-orderMapper</path>
       <mediaType>text/plain</mediaType>
+      <properties></properties>
+    </item>
+  </artifact>
+  <artifact name="resources_datamapper_orderlist_enhance_from_cms_orderlist_enhance_from_cms_dmc" groupId="com.microintegrator.projects" version="1.0.0" type="registry/resource" serverRole="EnterpriseIntegrator">
+    <item>
+      <file>orderlist_enhance_from_cms.dmc</file>
+      <path>/_system/governance/mi-resources/datamapper/orderlist_enhance_from_cms</path>
+      <mediaType>text/plain</mediaType>
+      <properties></properties>
+    </item>
+  </artifact>
+  <artifact name="resources_datamapper_orderlist_enhance_from_cms_orderlist_enhance_from_cms_inputSchema_json" groupId="com.microintegrator.projects" version="1.0.0" type="registry/resource" serverRole="EnterpriseIntegrator">
+    <item>
+      <file>orderlist_enhance_from_cms_inputSchema.json</file>
+      <path>/_system/governance/mi-resources/datamapper/orderlist_enhance_from_cms</path>
+      <mediaType>text/plain</mediaType>
+      <properties></properties>
+    </item>
+  </artifact>
+  <artifact name="resources_datamapper_orderlist_enhance_from_cms_orderlist_enhance_from_cms_outputSchema_json" groupId="com.microintegrator.projects" version="1.0.0" type="registry/resource" serverRole="EnterpriseIntegrator">
+    <item>
+      <file>orderlist_enhance_from_cms_outputSchema.json</file>
+      <path>/_system/governance/mi-resources/datamapper/orderlist_enhance_from_cms</path>
+      <mediaType>text/plain</mediaType>
       <properties/>
     </item>
   </artifact>
